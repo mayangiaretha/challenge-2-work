@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node src/index.js",
+    "start": "env-cmd -f .env babel-node src/index.js",
     "lint": "prettier --write .",
-    "dev":  "env-cmd -f .env nodemon --watch src --exec babel-node src/index.js"
-
+    "dev": "env-cmd -f .env nodemon --watch src --exec babel-node src/index.js"
   },
   "author": "",
   "license": "ISC",
