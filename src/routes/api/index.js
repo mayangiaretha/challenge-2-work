@@ -1,8 +1,8 @@
-import { Router } from "express";
-import questionsRoute from './questions.route'
+import { Router } from 'express';
+import questionsRoute from './questions.route';
 
-const routes =Router();
+const routes = Router();
 
 routes.use('/questions', questionsRoute);
 
-export default routes
+export default routes;
