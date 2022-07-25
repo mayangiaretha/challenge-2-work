@@ -17,10 +17,20 @@ router.post(
   QuestionController.createAQuestion
 );
 
-// router.get('/:id', QuestionController.getAQuestion);
+router.get('/:id', QuestionController.getAQuestion);
 
-// router.patch('/:id', QuestionController.upDated);
+router.put(
+  '/:id',
+  celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      title: Joi.string().optional(),
+      description: Joi.string().optional(),
+    }),
+  }),
 
-// router.delete ('/:id', QuestionController.deleteQuestion);
+  QuestionController.upDated
+);
+
+router.delete('/:id', QuestionController.deleteQuestion);
 
 export default router;
