@@ -1,8 +1,8 @@
-import { Router } from "express";
-import routes from './api'
+import { Router } from 'express';
+import routes from './api';
 
-const router =Router();
+const router = Router();
 
 router.use('/api/v1', routes);
 
-export default router
+export default router;
