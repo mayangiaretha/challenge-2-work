@@ -1,4 +1,4 @@
-import { questions } from '../db/db';
+import { answers, questions } from '../db/db';
 import { v4 as uuidv4 } from 'uuid';
 
 class QuestionController {
@@ -80,6 +80,36 @@ class QuestionController {
       return res.status(201).json({ message: 'question deleted ' });
     } catch (error) {
       console.log(error.message);
+    }
+  }
+
+  static createAnAnswer(req, res) {
+    try {
+      const { questionId, answer } = req.body;
+
+      const createAnAnswer = { id: uuidv4(), questionId, answer };
+      answers.push(createAnAnswer);
+
+      return res.status(201).json({
+        message: 'Answer has been created',
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  static getAnAnswer(req, res) {
+    const { id } = req.params;
+
+    const foundAnswer = answers.filter((answer) => answer.questionId === id);
+
+    if (!foundAnswer) {
+      res
+        .status(400)
+        .json({ message: 'Answer to this question does not exist' });
+    }
+    if (foundAnswer) {
+      res.status(200).json(foundAnswer);
     }
   }
 }
