@@ -33,4 +33,21 @@ router.put(
 
 router.delete('/:id', QuestionController.deleteQuestion);
 
+//Answers routes
+
+//post an answer
+
+router.post(
+  '/:id/answers',
+  celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      answer: Joi.string().min(10).required(),
+    }),
+  }),
+  QuestionController.createAnAnswer
+);
+
+// Getting a specific answer
+router.get('/:id/answers/', QuestionController.getAnAnswer);
+
 export default router;
