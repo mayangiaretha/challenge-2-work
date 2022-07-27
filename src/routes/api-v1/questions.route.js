@@ -38,7 +38,7 @@ router.delete('/:id', QuestionController.deleteQuestion);
 //post an answer
 
 router.post(
-  '/:id/answers',
+  '/:qnsId/answers',
   celebrate({
     [Segments.BODY]: Joi.object().keys({
       answer: Joi.string().min(10).required(),

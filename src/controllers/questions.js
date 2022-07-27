@@ -2,7 +2,7 @@ import { answers, questions } from '../db/db';
 import { v4 as uuidv4 } from 'uuid';
 
 class QuestionController {
-  static async getAllQuestions(req, res) {
+  static getAllQuestions(req, res) {
     try {
       return res.status(200).json(questions);
     } catch (error) {
@@ -82,15 +82,26 @@ class QuestionController {
       console.log(error.message);
     }
   }
+  //post an answer
 
   static createAnAnswer(req, res) {
     try {
-      const { questionId, answer } = req.body;
+      const { qnsId } = req.params;
+      const { answer } = req.body;
 
-      const createAnAnswer = { id: uuidv4(), questionId, answer };
+      const foundQuestion = questions.find((question) => question.id === qnsId);
+      if (!foundQuestion) {
+        return res
+          .status(200)
+          .json({ error: 'question does not exist please check id' });
+      }
+
+
+      const createAnAnswer = { id: uuidv4(), questionId: qnsId, answer: answer };
       answers.push(createAnAnswer);
 
       return res.status(201).json({
+        answer: createAnAnswer,
         message: 'Answer has been created',
       });
     } catch (error) {
@@ -99,17 +110,21 @@ class QuestionController {
   }
 
   static getAnAnswer(req, res) {
-    const { id } = req.params;
+    try {
+      const { id } = req.params;
 
-    const foundAnswer = answers.filter((answer) => answer.questionId === id);
+      const foundAnswer = answers.filter((answer) => answer.questionId === id);
 
-    if (!foundAnswer) {
-      res
-        .status(400)
-        .json({ message: 'Answer to this question does not exist' });
-    }
-    if (foundAnswer) {
-      res.status(200).json(foundAnswer);
+      if (!foundAnswer) {
+        res
+          .status(400)
+          .json({ message: 'Answer to this question does not exist' });
+      }
+      if (foundAnswer) {
+        res.status(200).json(foundAnswer);
+      }
+    } catch (error) {
+      console.log(error.message);
     }
   }
 }
