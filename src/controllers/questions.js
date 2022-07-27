@@ -33,7 +33,7 @@ class QuestionController {
       const foundQuestion = questions.find((question) => question.id === id);
       if (!foundQuestion) {
         return res
-          .status(200)
+          .status(400)
           .json({ error: 'question does not exist please check id' });
       }
       return res.json({ question: foundQuestion });
@@ -77,7 +77,7 @@ class QuestionController {
         return res.status(400).json({ message: 'Question not found' });
       }
       questions.splice(deletedQuestion, 1);
-      return res.status(201).json({ message: 'question deleted ' });
+      return res.status(204).json({ message: 'question deleted ' });
     } catch (error) {
       console.log(error.message);
     }
@@ -92,7 +92,7 @@ class QuestionController {
       const foundQuestion = questions.find((question) => question.id === qnsId);
       if (!foundQuestion) {
         return res
-          .status(200)
+          .status(400)
           .json({ error: 'question does not exist please check id' });
       }
 
