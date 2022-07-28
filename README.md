@@ -2,14 +2,19 @@
 
 This is a stack overflow-api clone
 
-## Available Scripts
+## Quick set up
+To clone this repository,type git clone https://github.com/mayangiaretha/stackoverflow-backend.git
+in the command line
 
 In the project directory, you can run:
 
-### `npm start`
+### Install all dependencies
+run:`npm install `
+run: npm run dev
+
 
 Runs the app
-Open [http://localhost:4000](http://localhost:4000) to view it in your browser.
+Open [http://localhost:8000](http://localhost:8000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
@@ -17,10 +22,8 @@ You may also see any lint errors in the console.
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
-See the [jest documentation](https://jestjs.io/docs/getting-started) for more information on jest.
+See the [chai Assertion Libray] for more information on chai.
 See the section on [supertest](https://github.com/visionmedia/supertest) for more information for supertest.
-
-### `npm run build`
 
 ## Author
 
