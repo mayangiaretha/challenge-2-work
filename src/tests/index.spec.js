@@ -23,5 +23,6 @@ export class BaseTest {
   static delete = url => {
     return BaseTest.appInstance.delete(`${version}${url}`);
   };
+
 }
 
