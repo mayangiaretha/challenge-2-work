@@ -7,10 +7,11 @@ To clone this repository,type git clone https://github.com/mayangiaretha/stackov
 in the command line
 
 In the project directory, you can run:
+### npm run dev
 
 ### Install all dependencies
 run:`npm install `
-run: npm run dev
+
 
 
 Runs the app
