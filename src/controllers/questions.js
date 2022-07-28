@@ -51,7 +51,7 @@ class QuestionController {
       const updatedQuestion = questions.find((question) => question.id === id);
 
       if (!updatedQuestion) {
-        return res.status(201).json({ error: 'question does not exist ' });
+        return res.status(400).json({ error: 'question does not exist ' });
       }
 
       if (title) updatedQuestion.title = title;
@@ -115,14 +115,13 @@ class QuestionController {
 
       const foundAnswer = answers.filter((answer) => answer.questionId === id);
 
-      if (!foundAnswer) {
-        res
+      if (foundAnswer.length === 0) {
+        return res
           .status(400)
           .json({ message: 'Answer to this question does not exist' });
       }
-      if (foundAnswer) {
-        res.status(200).json(foundAnswer);
-      }
+      return res.status(200).json(foundAnswer);
+
     } catch (error) {
       console.log(error.message);
     }
